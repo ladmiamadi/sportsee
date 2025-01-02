@@ -1,0 +1,10 @@
+@use '../../assets/style/_variables.scss' as vars;
+
+.menu {
+  height: 1024px;
+  width: 117px;
+  position: absolute;
+  top: 0;
+  box-shadow: 0 4px 4px 0 #00000040;
+  background-color: vars.$dark-grey;
+}
