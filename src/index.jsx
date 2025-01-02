@@ -11,11 +11,13 @@ createRoot(document.getElementById('root')).render(
      <StrictMode>
           <BrowserRouter>
                <Header />
-               <VerticalMenu />
-               <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="*" element={<Error />} />
-               </Routes>
+               <div className="container">
+                    <VerticalMenu />
+                    <Routes>
+                         <Route path="/" element={<Home />} />
+                         <Route path="*" element={<Error />} />
+                    </Routes>
+               </div>
           </BrowserRouter>
      </StrictMode>,
 );
