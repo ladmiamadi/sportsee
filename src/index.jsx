@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Routes } from 'react-router';
 import Header from './components/Header/Header.jsx';
 import './assets/style/_global.scss';
 import VerticalMenu from './components/VerticalMenu/VerticalMenu.jsx';
+import Layout from './components/Layout/Layout.jsx';
 
 createRoot(document.getElementById('root')).render(
      <StrictMode>
@@ -13,10 +14,12 @@ createRoot(document.getElementById('root')).render(
                <Header />
                <div className="container">
                     <VerticalMenu />
-                    <Routes>
-                         <Route path="/" element={<Home />} />
-                         <Route path="*" element={<Error />} />
-                    </Routes>
+                    <Layout>
+                         <Routes>
+                              <Route path="/" element={<Home />} />
+                              <Route path="*" element={<Error />} />
+                         </Routes>
+                    </Layout>
                </div>
           </BrowserRouter>
      </StrictMode>,
