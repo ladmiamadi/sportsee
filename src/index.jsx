@@ -16,7 +16,7 @@ createRoot(document.getElementById('root')).render(
                     <VerticalMenu />
                     <Layout>
                          <Routes>
-                              <Route path="/" element={<Home />} />
+                              <Route path="/:id" element={<Home />} />
                               <Route path="*" element={<Error />} />
                          </Routes>
                     </Layout>

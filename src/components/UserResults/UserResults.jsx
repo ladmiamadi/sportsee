@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import styles from './UserResults.module.scss';
 import { getUserInfo } from '../../api/userService.js';
 import Loader from '../Loader/Loader.jsx';
-import styles from './UserInfo.module.scss';
 
-const UserInfo = ({ id }) => {
+const UserResults = ({ id }) => {
      const [user, setUser] = useState(null);
      const [isLoading, setIsLoading] = useState(true);
      const [error, setError] = useState(null);
@@ -32,19 +32,7 @@ const UserInfo = ({ id }) => {
      if (isLoading) {
           return <Loader />;
      }
-
-     return (
-          user && (
-               <div className={styles.infos}>
-                    <h2>
-                         Bonjour <span>{user.userInfos.firstName}</span>
-                    </h2>
-                    <p>
-                         Félicitation ! Vous avez explosé vos objectifs hier 👏
-                    </p>
-               </div>
-          )
-     );
+     return <div>results</div>;
 };
 
-export default UserInfo;
+export default UserResults;

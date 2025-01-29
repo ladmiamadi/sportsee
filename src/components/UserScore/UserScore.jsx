@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { getUserInfo } from '../../api/userService.js';
 import Loader from '../Loader/Loader.jsx';
-import styles from './UserInfo.module.scss';
+import styles from './UserScore.module.scss';
+import ScoreRadialChart from '../ScroreRadialChart/ScoreRadialChart';
 
-const UserInfo = ({ id }) => {
-     const [user, setUser] = useState(null);
+const UserScore = ({ id }) => {
+     const [userActivity, setUserActivity] = useState(null); // à revoir
+     const [chartData, setChartData] = useState(null);
      const [isLoading, setIsLoading] = useState(true);
      const [error, setError] = useState(null);
 
@@ -13,10 +15,17 @@ const UserInfo = ({ id }) => {
           async function fetchData() {
                try {
                     const response = await getUserInfo(id);
-                    setUser(response);
+                    setUserActivity(response);
+                    setChartData([
+                         {
+                              score:
+                                   (response.todayScore || response.score) *
+                                   100,
+                         },
+                    ]);
                } catch (error) {
-                    console.log(error);
                     setError(true);
+                    console.log(error);
                } finally {
                     setIsLoading(false);
                }
@@ -34,17 +43,10 @@ const UserInfo = ({ id }) => {
      }
 
      return (
-          user && (
-               <div className={styles.infos}>
-                    <h2>
-                         Bonjour <span>{user.userInfos.firstName}</span>
-                    </h2>
-                    <p>
-                         Félicitation ! Vous avez explosé vos objectifs hier 👏
-                    </p>
-               </div>
-          )
+          <div className={styles.container}>
+               <ScoreRadialChart data={chartData} />
+          </div>
      );
 };
 
-export default UserInfo;
+export default UserScore;
