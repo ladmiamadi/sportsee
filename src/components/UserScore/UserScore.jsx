@@ -35,7 +35,7 @@ const UserScore = ({ id }) => {
      }, []);
 
      if (error) {
-          return <span>Il y a un problème: {error}</span>;
+          return <span></span>;
      }
 
      if (isLoading) {

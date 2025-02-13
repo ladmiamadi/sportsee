@@ -5,7 +5,6 @@ import ActivityBarChart from '../ActivityBarChart/ActivityBarChart.jsx';
 import styles from './UserActivity.module.scss';
 
 const UserActivity = ({ id }) => {
-     const [userActivity, setUserActivity] = useState(null); // à revoir
      const [chartData, setChartData] = useState(null);
      const [isLoading, setIsLoading] = useState(true);
      const [error, setError] = useState(null);
@@ -15,8 +14,6 @@ const UserActivity = ({ id }) => {
           async function fetchData() {
                try {
                     const response = await getUserActivity(id);
-                    setUserActivity(response);
-
                     setChartData(
                          response.sessions.map((session, index) => ({
                               name: index + 1,
@@ -35,7 +32,7 @@ const UserActivity = ({ id }) => {
      }, []);
 
      if (error) {
-          return <span>Il y a un problème: {error}</span>;
+          return <span></span>;
      }
 
      if (isLoading) {

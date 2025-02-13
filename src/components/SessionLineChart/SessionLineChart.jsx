@@ -1,60 +1,134 @@
 import React from 'react';
+import styles from './SessionLineChart.module.scss';
+
 import {
-     Area,
-     AreaChart,
      ResponsiveContainer,
+     LineChart,
+     Line,
      Tooltip,
      XAxis,
      YAxis,
+     CartesianGrid,
+     Rectangle,
 } from 'recharts';
 
 const SessionLineChart = ({ data }) => {
+     const modifiedData = [
+          { day: '', duration: 0 },
+          ...data,
+          { day: '', duration: 0 },
+     ];
+     const CustomTooltip = ({ active, payload }) => {
+          if (active && payload && payload.length) {
+               return (
+                    <div className="custom-tooltip2">
+                         <p className={styles.tooltip}>
+                              {`${payload[0].value}` + ` `}min
+                         </p>
+                    </div>
+               );
+          }
+
+          return null;
+     };
+
+     const CustomCursor = ({ points }) => {
+          return (
+               <Rectangle
+                    fill="#000000"
+                    opacity={0.09}
+                    x={points[1].x}
+                    width={1000}
+                    height={400}
+               />
+          );
+     };
      return (
           <>
-               <h3>Durée moyenne des sessions</h3>
-               <ResponsiveContainer width={258} height={150}>
-                    <AreaChart data={data}>
+               <ResponsiveContainer width="100%" height={263}>
+                    <LineChart data={modifiedData} margin={{ top: 120, right: -10, left: -68, bottom: 50 }} >
                          <defs>
                               <linearGradient
-                                   id="strokeGradient"
-                                   x1="0"
-                                   y1="0"
-                                   x2="1"
-                                   y2="0"
+                                   id="gradientColor"
+                                   x1="1"
+                                   y1="1"
+                                   x2="0"
+                                   y2="1"
                               >
                                    <stop
-                                        offset="1.19%"
-                                        stopColor="rgba(255, 255, 255, 0.4)"
+                                        offset="20%"
+                                        stopColor="#FFFFFF"
+                                        stopOpacity={0.9}
                                    />
-                                   <stop offset="81.27%" stopColor="#FFFFFF" />
+                                   <stop
+                                        offset="100%"
+                                        stopColor="#FFFFFF"
+                                        stopOpacity={0.4}
+                                   />
                               </linearGradient>
                          </defs>
-
+                         <CartesianGrid vertical={false} horizontal={false} />
                          <XAxis
                               dataKey="day"
-                              tick={{
-                                   fill: 'white',
-                                   opacity: 0.5,
+
+                              tickLine={false}
+                              fillOpacity={0.5}
+                              style={{
+
                               }}
+                              tick={{
+                                   fill: '#FFFFFF',
+                                   fontWeight: 600,
+                                   fontSize: 12,
+                              }}
+                              tickMargin={14}
+                              dy={25}
+                              axisLine={false}
+                              interval="preserveStartEnd"
+                              tickFormatter={(value) => (value === '' ? '' : value)}
+                         />
+
+                         <YAxis
                               axisLine={false}
                               tickLine={false}
-                              padding={{ right: 10, left: 10 }}
+                              tick={false}
                          />
-                         <YAxis hide={true} />
                          <Tooltip
-                              formatter={(value, name) => [
-                                   `${value} min ${(name = '')}`,
-                              ]}
-                              labelFormatter={() => ''}
+                              content={<CustomTooltip />}
+                              cursor={<CustomCursor />}
                          />
-                         <Area
-                              type="monotone"
+
+                         <Line
+                              type="natural"
                               dataKey="duration"
-                              stroke="url(#strokeGradient)"
-                              strokeWidth={2}
-                              fill="rgba(255, 0, 0, 1)"
-                         />
-                    </AreaChart>
+                              dot={false}
+                              strokeWidth={2.5}
+                              stroke="url(#gradientColor)"
+                         ></Line>
+                         <text
+                              x="15%"
+                              y="15%"
+                              width={147}
+                              height={48}
+                              fill="#FFFFFF"
+                              style={{ fontWeight: 500, opacity: 0.6 }}
+                         >
+                              {' '}
+                              Durée moyenne des
+                         </text>
+
+                         <text
+                              x="15%"
+                              y="27%"
+                              width={147}
+                              height={48}
+                              fill="#FFFFFF"
+                              style={{ fontWeight: 500, opacity: 0.6 }}
+                         >
+                              {' '}
+                              sessions
+                         </text>
+                    </LineChart>
                </ResponsiveContainer>
           </>
      );

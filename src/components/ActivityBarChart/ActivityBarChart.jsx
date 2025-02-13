@@ -15,18 +15,24 @@ import {
 const ActivityBarChart = ({ data }) => {
      return (
           <div className={styles.barChart}>
-               <h3>Activité quotidienne</h3>
-               <ResponsiveContainer width={'100%'} height={300}>
-                    <BarChart data={data} barGap={8}>
-                         <CartesianGrid
-                              strokeDasharray="2 3"
-                              vertical={false}
-                         />
+               <ResponsiveContainer width="100%" height={320}>
+                    <BarChart
+                         data={data}
+                         barGap={8}
+                         barSize={8}
+                         margin={{
+                              top: 60,
+                              right: 50,
+                              left: 45,
+                              bottom: 50,
+                         }}
+                    >
+                         <CartesianGrid strokeDasharray="1" vertical={false} />
                          <XAxis
                               dataKey="name"
-                              stroke="rgba(155, 158, 172, 1)"
                               tickLine={false}
                               tickMargin={10}
+                              stroke="#DEDEDE"
                          />
                          <YAxis
                               yAxisId="poids"
@@ -34,10 +40,11 @@ const ActivityBarChart = ({ data }) => {
                               orientation="right"
                               padding={{ top: 34 }}
                               stroke="rgba(155, 158, 172, 1)"
-                              domain={[60, 'auto']}
+                              domain={[60, 'dataMax']}
                               axisLine={false}
                               tickLine={false}
-                              tickMargin={20}
+                              tickMargin={45}
+                              minTickGap={27}
                          />
                          <YAxis
                               yAxisId="calories"
@@ -74,13 +81,31 @@ const ActivityBarChart = ({ data }) => {
                               iconType="circle"
                               iconSize={8}
                               height={25}
-                              width={277}
+                              width="auto"
                               align="right"
                               wrapperStyle={{
-                                   top: '-10px',
-                                   right: '24px',
+                                   top: '10px',
+                                   right: '20px',
                                    fontSize: '14px',
                                    color: 'rgba(116, 121, 140, 1) !important',
+                                   display: 'flex',
+                                   justifyContent: 'space-between',
+                                  padding: '0 10px'
+                              }}
+                              formatter={(value, entry) => (
+                                   <span
+                                        style={{
+                                             color: 'rgba(116, 121, 140, 1)',
+                                        }}
+                                   >
+                                        {value}
+                                   </span>
+                              )}
+                              margin={{
+                                   top: 0,
+                                   right: 0,
+                                   bottom: 0,
+                                   left: 20,
                               }}
                          />
                          <Bar
@@ -101,6 +126,18 @@ const ActivityBarChart = ({ data }) => {
                               name="Calories brûlées (kCal)"
                               activeBar={<Rectangle />}
                          />
+                         <text
+                              className="graphTitle"
+                              x={32}
+                              y={24}
+                              width={147}
+                              height={48}
+                              fill="#20253A"
+                              style={{ fontWeight: 600 }}
+                         >
+                              {' '}
+                              Activité quotidienne
+                         </text>
                     </BarChart>
                </ResponsiveContainer>
           </div>

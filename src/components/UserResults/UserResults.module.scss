@@ -1,0 +1,97 @@
+.cards {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: space-between;
+  padding: 42px;
+  margin-top: 35px;
+  gap: 45px;
+
+  .card {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgba(251, 251, 251, 1);
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.02);
+    width: 258px;
+    height: 124px;
+    padding: 32px;
+
+    .energy {
+      background-color: #FFF9F9;
+      border-radius: 6px;
+      height: 60px;
+      width: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .protein {
+      background-color: rgba(74, 184, 255, 0.1);
+      border-radius: 6px;
+      height: 60px;
+      width: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .glucide {
+      background-color: #FDF8E6;
+      border-radius: 6px;
+      height: 60px;
+      width: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lipide {
+      background-color: rgba(253, 81, 129, 0.1);
+      border-radius: 6px;
+      height: 60px;
+      width: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .details {
+    }
+
+    h4 {
+      color: rgba(40, 45, 48, 1);
+      font-size: 20px;
+      line-height: 24px;
+      font-weight: 700;
+    }
+
+    p {
+      padding-top: 5px;
+      color: rgba(116, 121, 140, 1);
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 24px;
+    }
+  }
+
+  @media screen and (max-width: 1360px) {
+    flex-direction: row;
+    padding: 0;
+    flex-wrap: wrap;
+    width: 100%;
+    height: fit-content;
+
+    justify-content: space-between;
+
+    .card {
+      width: 40%;
+
+      h4 , p{
+        font-size: 16px;
+      }
+    }
+  }
+}
+

@@ -1,9 +1,17 @@
 .barChart {
+  ul.recharts-default-legend {
+    width: 277px !important;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
   h3 {
-    color: rgba(32, 37, 58, 1);
+    color: #20253A;
     font-size: 15px;
     line-height: 24px;
     font-weight: 500;
     margin-right: 35px;
+    padding-top: 20px;
   }
 }

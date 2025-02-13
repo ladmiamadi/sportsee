@@ -5,7 +5,6 @@ import PerformanceRadarChart from '../PerformanceRadarChart/PerformanceRadarChar
 import styles from './UserPerformance.module.scss';
 
 const UserPerformance = ({ id }) => {
-     const [userActivity, setUserActivity] = useState(null); // à revoir
      const [chartData, setChartData] = useState(null);
      const [isLoading, setIsLoading] = useState(true);
      const [error, setError] = useState(null);
@@ -15,14 +14,26 @@ const UserPerformance = ({ id }) => {
           async function fetchData() {
                try {
                     const response = await getUserPerformance(id);
-                    setUserActivity(response);
-
+                    const subjectsOrder = [
+                         'intensity',
+                         'speed',
+                         'strength',
+                         'endurance',
+                         'energy',
+                         'cardio',
+                    ];
                     setChartData(
-                         response.data.map((item) => ({
-                              subject: response.kind[item.kind],
-                              value: item.value,
-                              fullMark: 150,
-                         })),
+                         response.data
+                              .map((item) => ({
+                                   subject: response.kind[item.kind],
+                                   value: item.value,
+                                   fullMark: 150,
+                              }))
+                              .sort(
+                                   (a, b) =>
+                                        subjectsOrder.indexOf(a.subject) -
+                                        subjectsOrder.indexOf(b.subject),
+                              ),
                     );
                } catch (error) {
                     setError(true);
@@ -35,7 +46,7 @@ const UserPerformance = ({ id }) => {
      }, []);
 
      if (error) {
-          return <span>Il y a un problème: {error}</span>;
+          return <span></span>;
      }
 
      if (isLoading) {

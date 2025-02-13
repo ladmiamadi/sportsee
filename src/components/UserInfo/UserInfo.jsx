@@ -26,7 +26,11 @@ const UserInfo = ({ id }) => {
      }, []);
 
      if (error) {
-          return <span>Il y a un problème: {error}</span>;
+          return (
+               <span>
+                    Un problème est survenu lors de l'affichage de la page!
+               </span>
+          );
      }
 
      if (isLoading) {

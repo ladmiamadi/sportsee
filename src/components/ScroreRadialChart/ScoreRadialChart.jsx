@@ -17,7 +17,7 @@ const ScoreRadialChart = ({ data }) => {
                     innerRadius="80%"
                     outerRadius="90%"
                     data={data}
-                    startAngle={-180} //
+                    startAngle={-180}
                     endAngle={-270}
                     style={{ borderRadius: '10px' }}
                >

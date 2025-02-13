@@ -9,8 +9,22 @@
     align-items: center;
     height: 263px;
   }
+
+  @media screen and (max-width: 1070px){
+    width: 600px;
+  }
 }
 
 .flexContainer {
   display: flex;
-}
+
+  @media screen and (max-width: 1360px) {
+    flex-direction: column;
+    width: 835px;
+  }
+
+  @media screen and (max-width: 1070px) {
+    flex-direction: column;
+    width: 600px;
+  }
+  }
