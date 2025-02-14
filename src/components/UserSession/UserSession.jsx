@@ -5,7 +5,6 @@ import Loader from '../Loader/Loader.jsx';
 import { getUserSession } from '../../api/userService.js';
 
 const UserSession = ({ id }) => {
-     const [userActivity, setUserActivity] = useState(null); // à revoir
      const [chartData, setChartData] = useState(null);
      const [isLoading, setIsLoading] = useState(true);
      const [error, setError] = useState(null);
@@ -15,8 +14,6 @@ const UserSession = ({ id }) => {
           async function fetchData() {
                try {
                     const response = await getUserSession(id);
-                    setUserActivity(response);
-
                     setChartData(
                          response.sessions.map((session) => ({
                               day: ['L', 'M', 'M', 'J', 'V', 'S', 'D'][

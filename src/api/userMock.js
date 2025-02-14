@@ -26,7 +26,7 @@ export const getUserActivitiesMock = async (id) => {
 
 export const getUserSessionsMock = async (id) => {
      try {
-          const response = await axios.get('src/mock/userAverageSessions.json');
+          const response = await axios.get('src/mock/userAverageSession.json');
           const users = response.data;
 
           return users.find((user) => user.userId === parseInt(id)) || null;

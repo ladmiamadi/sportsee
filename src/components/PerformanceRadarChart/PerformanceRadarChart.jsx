@@ -47,7 +47,7 @@ const PerformanceRadarChart = ({ data }) => {
           <>
                <ResponsiveContainer width="100%" height="100%">
                     <RadarChart
-                         outerRadius={window.innerWidth <= 1024 ? '45%' : '73%'}
+                         outerRadius={window.innerWidth <= 1077 ? '42%' : '73%'}
                          data={data}
                          style={{
                               backgroundColor: 'rgba(40, 45, 48, 1)',
